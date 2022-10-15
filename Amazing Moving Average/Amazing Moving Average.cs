@@ -22,16 +22,17 @@ namespace cAlgo
 
         [Parameter(NAME + " " + VERSION, Group = "Identity", DefaultValue = "https://www.google.com/search?q=ctrader+guru+amazing+moving+average")]
         public string ProductInfo { get; set; }
-        [Parameter("Source")]
+        
+        [Parameter("Source", Group = "Params")]
         public DataSeries Source { get; set; }
 
-        [Parameter("Period", DefaultValue = 100, MinValue = 1)]
+        [Parameter("Period", Group = "Params", DefaultValue = 100, MinValue = 1)]
         public int Period { get; set; }
 
-        [Parameter("MA Type", DefaultValue = MovingAverageType.Triangular)]
+        [Parameter("MA Type", Group = "Params", DefaultValue = MovingAverageType.Triangular)]
         public MovingAverageType Type { get; set; }
 
-        [Parameter("Deviation", DefaultValue = 0, MinValue = 0, Step = 0.1)]
+        [Parameter("Deviation", Group = "Params", DefaultValue = 0, MinValue = 0, Step = 0.1)]
         public double Deviation { get; set; }   
 
         [Output("AMA", LineColor = "FF595959", PlotType = PlotType.DiscontinuousLine, Thickness = 1)]
