@@ -20,7 +20,7 @@ namespace cAlgo
 
         #region Params
 
-        [Parameter(NAME + " " + VERSION, Group = "Identity", DefaultValue = "https://www.google.com/search?q=ctrader+guru+amazing+price+action")]
+        [Parameter(NAME + " " + VERSION, Group = "Identity", DefaultValue = "https://www.google.com/search?q=ctrader+guru+amazing+moving+average")]
         public string ProductInfo { get; set; }
         [Parameter("Source")]
         public DataSeries Source { get; set; }
