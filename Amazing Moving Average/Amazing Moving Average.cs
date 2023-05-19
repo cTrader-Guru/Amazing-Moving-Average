@@ -6,7 +6,7 @@ using cAlgo.API.Internals;
 namespace cAlgo
 {
 
-    [Indicator(IsOverlay = true, TimeZone = TimeZones.UTC, AccessRights = AccessRights.None)]
+    [Indicator(IsOverlay = true, TimeZone = TimeZones.UTC, AccessRights = AccessRights.FullAccess)]
     public class AmazingMovingAverage : Indicator
     {
 
@@ -14,7 +14,7 @@ namespace cAlgo
 
         public const string NAME = "Amazing Moving Average";
 
-        public const string VERSION = "1.0.0";
+        public const string VERSION = "1.0.1";
 
         #endregion
 
@@ -31,9 +31,6 @@ namespace cAlgo
 
         [Parameter("MA Type", Group = "Params", DefaultValue = MovingAverageType.Triangular)]
         public MovingAverageType Type { get; set; }
-
-        [Parameter("Deviation", Group = "Params", DefaultValue = 0, MinValue = 0, Step = 0.1)]
-        public double Deviation { get; set; }   
 
         [Output("AMA", LineColor = "FF595959", PlotType = PlotType.DiscontinuousLine, Thickness = 1)]
         public IndicatorDataSeries AMAresult{ get; set; }
@@ -69,10 +66,6 @@ namespace cAlgo
             AMAresult[index] = AMA.Result.Last(0);
             AMAplus[index] = double.NaN;
             AMAminus[index] = double.NaN;
-
-            double diff = Math.Round(Math.Abs(AMA.Result.Last(0) - AMA.Result.Last(1)), Symbol.Digits);
-
-            if (diff < PipsToDigits(Deviation)) return;
 
             if (AMA.Result.Last(0) > AMA.Result.Last(1))
             {
